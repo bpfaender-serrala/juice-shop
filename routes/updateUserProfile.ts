@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { type Request, type Response, type NextFunction } from 'express'
 import { UserModel } from '../models/user'
@@ -25,7 +21,7 @@ module.exports = function updateUserProfile () {
               req.body.username !== user.username
           })
           void user.update({ username: req.body.username }).then((savedUser: UserModel) => {
-            // @ts-expect-error FIXME some properties missing in savedUser
+            
             savedUser = utils.queryResultToJson(savedUser)
             const updatedToken = security.authorize(savedUser)
             security.authenticatedUsers.put(updatedToken, savedUser)

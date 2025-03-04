@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { LoginComponent } from '../login/login.component'
 import { SecurityAnswerService } from '../Services/security-answer.service'

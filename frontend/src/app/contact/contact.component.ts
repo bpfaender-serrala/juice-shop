@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { FeedbackService } from '../Services/feedback.service'
 import { CaptchaService } from '../Services/captcha.service'
@@ -62,7 +58,7 @@ export class ContactComponent implements OnInit {
   save () {
     this.feedback.captchaId = this.captchaId
     this.feedback.captcha = this.captchaControl.value
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    
     this.feedback.comment = `${this.feedbackControl.value} (${this.authorControl.value})`
     this.feedback.rating = this.rating
     this.feedback.UserId = this.userIdControl.value

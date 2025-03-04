@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { type Request, type Response, type NextFunction } from 'express'
 import { UserModel } from '../models/user'
@@ -42,7 +38,7 @@ module.exports.upgradeToDeluxe = function upgradeToDeluxe () {
       user.update({ role: security.roles.deluxe, deluxeToken: security.deluxeToken(user.email) })
         .then(user => {
           challengeUtils.solveIf(challenges.freeDeluxeChallenge, () => { return security.verify(utils.jwtFrom(req)) && req.body.paymentMode !== 'wallet' && req.body.paymentMode !== 'card' })
-          // @ts-expect-error FIXME some properties missing in user
+          
           user = utils.queryResultToJson(user)
           const updatedToken = security.authorize(user)
           security.authenticatedUsers.put(updatedToken, user)

@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 import express, { type NextFunction, type Request, type Response } from 'express'
 import path from 'path'
 import { SecurityAnswerModel } from '../models/securityAnswer'
@@ -14,7 +10,7 @@ const insecurity = require('../lib/insecurity')
 const challengeUtils = require('../lib/challengeUtils')
 const router = express.Router()
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
+
 router.get('/', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const loggedInUser = insecurity.authenticatedUsers.get(req.cookies.token)
   if (!loggedInUser) {
@@ -50,7 +46,7 @@ interface DataErasureRequestParams {
   securityAnswer: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
+
 router.post('/', async (req: Request<Record<string, unknown>, Record<string, unknown>, DataErasureRequestParams>, res: Response, next: NextFunction): Promise<void> => {
   const loggedInUser = insecurity.authenticatedUsers.get(req.cookies.token)
   if (!loggedInUser) {

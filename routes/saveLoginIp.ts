@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { type Request, type Response, type NextFunction } from 'express'
 import { UserModel } from '../models/user'
@@ -23,7 +19,7 @@ module.exports = function saveLoginIp () {
         lastLoginIp = security.sanitizeSecure(lastLoginIp)
       }
       if (lastLoginIp === undefined) {
-        // @ts-expect-error FIXME types not matching
+        
         lastLoginIp = utils.toSimpleIpAddress(req.socket.remoteAddress)
       }
       UserModel.findByPk(loggedInUser.data.id).then((user: UserModel | null) => {

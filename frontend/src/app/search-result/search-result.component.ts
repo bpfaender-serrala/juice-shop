@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { ProductDetailsComponent } from '../product-details/product-details.component'
 import { ActivatedRoute, Router } from '@angular/router'
@@ -59,7 +55,7 @@ export class SearchResultComponent implements OnDestroy, AfterViewInit {
     private readonly router: Router, private readonly route: ActivatedRoute, private readonly sanitizer: DomSanitizer, private readonly ngZone: NgZone, private readonly io: SocketIoService,
     private readonly snackBarHelperService: SnackBarHelperService, private readonly cdRef: ChangeDetectorRef) { }
 
-  // vuln-code-snippet start restfulXssChallenge
+  
   ngAfterViewInit () {
     const products = this.productService.search('')
     const quantities = this.quantityService.getAll()
@@ -146,9 +142,9 @@ export class SearchResultComponent implements OnDestroy, AfterViewInit {
       queryParam = queryParam.trim()
       this.ngZone.runOutsideAngular(() => { // vuln-code-snippet hide-start
         this.io.socket().emit('verifyLocalXssChallenge', queryParam)
-      }) // vuln-code-snippet hide-end
+      }) 
       this.dataSource.filter = queryParam.toLowerCase()
-      this.searchValue = this.sanitizer.bypassSecurityTrustHtml(queryParam) // vuln-code-snippet vuln-line localXssChallenge xssBonusChallenge
+      this.searchValue = this.sanitizer.bypassSecurityTrustHtml(queryParam) 
       this.gridDataSource.subscribe((result: any) => {
         if (result.length === 0) {
           this.emptyState = true
@@ -189,7 +185,7 @@ export class SearchResultComponent implements OnDestroy, AfterViewInit {
         if (productsInBasket[i].id === id) {
           found = true
           this.basketService.get(productsInBasket[i].BasketItem.id).subscribe((existingBasketItem) => {
-            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+            
             const newQuantity = existingBasketItem.quantity + 1
             this.basketService.put(existingBasketItem.id, { quantity: newQuantity }).subscribe((updatedBasketItem) => {
               this.productService.get(updatedBasketItem.ProductId).subscribe((product) => {

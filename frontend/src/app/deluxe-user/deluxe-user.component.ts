@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { Component, NgZone, type OnInit } from '@angular/core'
 import { UserService } from '../Services/user.service'
@@ -27,7 +23,7 @@ export class DeluxeUserComponent implements OnInit {
 
   ngOnInit () {
     this.configurationService.getApplicationConfiguration().subscribe((config) => {
-      const decalParam: string = this.route.snapshot.queryParams.testDecal // "Forgotten" test parameter to play with different stickers on the delivery box image
+      const decalParam: string = this.route.snapshot.queryParams.testDecal 
       if (config?.application) {
         if (config.application.name) {
           this.applicationName = config.application.name

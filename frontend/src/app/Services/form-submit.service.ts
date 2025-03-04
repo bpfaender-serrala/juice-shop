@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { Inject, Injectable } from '@angular/core'
 import { DOCUMENT } from '@angular/common'
@@ -18,7 +14,7 @@ export class FormSubmitService {
 
     form.addEventListener('keyup', function (event) {
       event.preventDefault()
-      // eslint-disable-next-line import/no-deprecated
+      
       if (event.keyCode === 13 && !submitButton.disabled) {
         onSubmit()
       }

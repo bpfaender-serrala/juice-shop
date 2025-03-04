@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import {
   type CreationOptional,
@@ -11,7 +7,6 @@ import {
   DataTypes,
   type Sequelize
 } from 'sequelize'
-/* jslint node: true */
 class Address extends Model<
 InferAttributes<Address>,
 InferCreationAttributes<Address>

@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { CookieService } from 'ngx-cookie'
 import { WindowRefService } from '../Services/window-ref.service'
@@ -50,7 +46,7 @@ export class LoginComponent implements OnInit {
       this.rememberMe.setValue(false)
     }
 
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    
     this.redirectUri = `${this.windowRefService.nativeWindow.location.protocol}//${this.windowRefService.nativeWindow.location.host}`
     this.configurationService.getApplicationConfiguration().subscribe((config) => {
       if (config?.application?.googleOauth) {

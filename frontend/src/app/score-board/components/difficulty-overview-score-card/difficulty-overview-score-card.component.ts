@@ -8,8 +8,8 @@ interface DifficultySummary {
   solvedChallenges: number
 }
 
-// interface doesn't work here
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+
+
 type DifficultySummaries = Record<number, DifficultySummary>
 
 const INITIAL_SUMMARIES: Readonly<DifficultySummaries> = Object.freeze({
@@ -30,7 +30,7 @@ export class DifficultyOverviewScoreCardComponent implements OnInit, OnChanges {
   @Input()
   public allChallenges: EnrichedChallenge[] = []
 
-  // includes hacking and coding challenges (both find it and fix it)
+  
   public totalChallenges: number
   public solvedChallenges: number
 
@@ -59,7 +59,7 @@ export class DifficultyOverviewScoreCardComponent implements OnInit, OnChanges {
 
     const codingScore = availableCodingChallenges
       .map((challenge) => challenge.codingChallengeStatus)
-      .reduce((a, b) => a + b, 0) // sum up the scores
+      .reduce((a, b) => a + b, 0) 
 
     this.difficultySummaries = DifficultyOverviewScoreCardComponent.calculateDifficultySummaries(this.allChallenges)
 

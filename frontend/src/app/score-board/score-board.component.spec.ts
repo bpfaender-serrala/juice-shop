@@ -20,7 +20,7 @@ import { CodeSnippetService } from '../Services/code-snippet.service'
 import { ChallengeService } from '../Services/challenge.service'
 import { type Challenge } from '../Models/challenge.model'
 
-// allows to easily create a challenge with some overwrites
+
 function createChallenge (challengeOverwrites: Partial<Challenge>): Challenge {
   return {
     name: 'foobar',

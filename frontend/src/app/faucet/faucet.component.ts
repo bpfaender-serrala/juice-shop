@@ -16,7 +16,7 @@ import {
   InjectedConnector
 } from '@wagmi/core'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const client = createClient({
   autoConnect: true,
   provider: getDefaultProvider()

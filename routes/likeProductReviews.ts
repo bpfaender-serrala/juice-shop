@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import challengeUtils = require('../lib/challengeUtils')
 import { type Request, type Response, type NextFunction } from 'express'
@@ -26,7 +22,7 @@ module.exports = function productReviews () {
             { $inc: { likesCount: 1 } }
           ).then(
             () => {
-              // Artificial wait for timing attack challenge
+              
               setTimeout(function () {
                 db.reviewsCollection.findOne({ _id: id }).then((review: Review) => {
                   const likedBy = review.likedBy

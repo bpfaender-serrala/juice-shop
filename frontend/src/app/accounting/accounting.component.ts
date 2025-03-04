@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { ProductService } from '../Services/product.service'
 import { type AfterViewInit, Component, type OnDestroy, ViewChild } from '@angular/core'
@@ -109,7 +105,7 @@ export class AccountingComponent implements AfterViewInit, OnDestroy {
 
   modifyPrice (id, value) {
     this.productService.put(id, { price: value < 0 ? 0 : value }).subscribe((product) => {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      
       this.snackBarHelperService.open(`Price for ${product.name} has been updated.`, 'confirmBar')
       this.loadProducts()
     }, (err) => {

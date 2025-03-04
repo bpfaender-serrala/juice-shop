@@ -13,7 +13,7 @@ import {
   solidityCompiler
 } from 'solidity-browser-compiler'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const client = createClient({
   autoConnect: true,
   provider: getDefaultProvider()

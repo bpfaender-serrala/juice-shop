@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { TokenSaleComponent } from './token-sale/token-sale.component'
 import { OAuthComponent } from './oauth/oauth.component'
@@ -56,13 +52,13 @@ const loadWeb3SandboxtModule = async () => {
   const module = await import('./web3-sandbox/web3-sandbox.module')
   return module.FaucetModule
 }
-// vuln-code-snippet start adminSectionChallenge scoreBoardChallenge web3SandboxChallenge
+
 const routes: Routes = [
-  { // vuln-code-snippet neutral-line adminSectionChallenge
-    path: 'administration', // vuln-code-snippet vuln-line adminSectionChallenge
-    component: AdministrationComponent, // vuln-code-snippet neutral-line adminSectionChallenge
-    canActivate: [AdminGuard] // vuln-code-snippet neutral-line adminSectionChallenge
-  }, // vuln-code-snippet neutral-line adminSectionChallenge
+  { 
+    path: 'administration', 
+    component: AdministrationComponent, 
+    canActivate: [AdminGuard] 
+  }, 
   {
     path: 'accounting',
     component: AccountingComponent,
@@ -169,10 +165,10 @@ const routes: Routes = [
     path: 'hacking-instructor',
     component: SearchResultComponent
   },
-  { // vuln-code-snippet neutral-line scoreBoardChallenge
-    path: 'score-board', // vuln-code-snippet vuln-line scoreBoardChallenge
-    component: ScoreBoardComponent // vuln-code-snippet neutral-line scoreBoardChallenge
-  }, // vuln-code-snippet neutral-line scoreBoardChallenge
+  { 
+    path: 'score-board', 
+    component: ScoreBoardComponent 
+  }, 
   {
     path: 'track-result',
     component: TrackResultComponent
@@ -222,24 +218,24 @@ const routes: Routes = [
     path: 'wallet-web3',
     loadChildren: async () => await loadWeb3WalletModule()
   },
-  { // vuln-code-snippet neutral-line web3SandboxChallenge
-    path: 'web3-sandbox', // vuln-code-snippet vuln-line web3SandboxChallenge
-    loadChildren: async () => await loadWeb3SandboxtModule() // vuln-code-snippet neutral-line web3SandboxChallenge
-  }, // vuln-code-snippet neutral-line web3SandboxChallenge
+  { 
+    path: 'web3-sandbox', 
+    loadChildren: async () => await loadWeb3SandboxtModule() 
+  }, 
   {
     path: 'bee-haven',
     loadChildren: async () => await loadFaucetModule()
   },
-  // vuln-code-snippet start tokenSaleChallenge
+  
   {
     matcher: oauthMatcher,
     data: { params: (window.location.href).substr(window.location.href.indexOf('#')) },
     component: OAuthComponent
   },
-  { // vuln-code-snippet neutral-line tokenSaleChallenge
-    matcher: tokenMatcher, // vuln-code-snippet vuln-line tokenSaleChallenge
-    component: TokenSaleComponent // vuln-code-snippet neutral-line tokenSaleChallenge
-  }, // vuln-code-snippet neutral-line tokenSaleChallenge
+  { 
+    matcher: tokenMatcher, 
+    component: TokenSaleComponent 
+  }, 
   {
     path: '403',
     component: ErrorPageComponent
@@ -249,7 +245,7 @@ const routes: Routes = [
     component: SearchResultComponent
   }
 ]
-// vuln-code-snippet end adminSectionChallenge scoreBoardChallenge web3SandboxChallenge
+
 
 export const Routing = RouterModule.forRoot(routes, { useHash: true })
 
@@ -265,25 +261,25 @@ export function oauthMatcher (url: UrlSegment[]): UrlMatchResult {
   return null as unknown as UrlMatchResult
 }
 
-export function tokenMatcher (url: UrlSegment[]): UrlMatchResult { // vuln-code-snippet neutral-line tokenSaleChallenge
-  if (url.length === 0) { // vuln-code-snippet neutral-line tokenSaleChallenge
-    return null as unknown as UrlMatchResult // vuln-code-snippet neutral-line tokenSaleChallenge
-  } // vuln-code-snippet neutral-line tokenSaleChallenge
-  // vuln-code-snippet neutral-line tokenSaleChallenge
-  const path = url[0].toString() // vuln-code-snippet neutral-line tokenSaleChallenge
-  // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-  if (path.match((token1(25, 184, 174, 179, 182, 186) + (36669).toString(36).toLowerCase() + token2(13, 144, 87, 152, 139, 144, 83, 138) + (10).toString(36).toLowerCase()))) { // vuln-code-snippet vuln-line tokenSaleChallenge
-    return ({ consumed: url }) // vuln-code-snippet neutral-line tokenSaleChallenge
-  } // vuln-code-snippet neutral-line tokenSaleChallenge
-  // vuln-code-snippet neutral-line tokenSaleChallenge
-  return null as unknown as UrlMatchResult // vuln-code-snippet neutral-line tokenSaleChallenge
-} // vuln-code-snippet neutral-line tokenSaleChallenge
+export function tokenMatcher (url: UrlSegment[]): UrlMatchResult { 
+  if (url.length === 0) { 
+    return null as unknown as UrlMatchResult 
+  } 
+  
+  const path = url[0].toString() 
+  
+  if (path.match((token1(25, 184, 174, 179, 182, 186) + (36669).toString(36).toLowerCase() + token2(13, 144, 87, 152, 139, 144, 83, 138) + (10).toString(36).toLowerCase()))) { 
+    return ({ consumed: url }) 
+  } 
+  
+  return null as unknown as UrlMatchResult 
+} 
 
-export function token1 (...args: number[]) { // vuln-code-snippet neutral-line tokenSaleChallenge
-  const L = Array.prototype.slice.call(args) // vuln-code-snippet neutral-line tokenSaleChallenge
-  const D = L.shift() // vuln-code-snippet neutral-line tokenSaleChallenge
-  return L.reverse().map(function (C, A) { // vuln-code-snippet neutral-line tokenSaleChallenge
-    return String.fromCharCode(C - D - 45 - A) // vuln-code-snippet neutral-line tokenSaleChallenge
+export function token1 (...args: number[]) { 
+  const L = Array.prototype.slice.call(args) 
+  const D = L.shift() 
+  return L.reverse().map(function (C, A) { 
+    return String.fromCharCode(C - D - 45 - A) 
   }).join('') // vuln-code-snippet neutral-line tokenSaleChallenge
 } // vuln-code-snippet neutral-line tokenSaleChallenge
 
@@ -292,6 +288,6 @@ export function token2 (...args: number[]) { // vuln-code-snippet neutral-line t
   const M = T.shift() // vuln-code-snippet neutral-line tokenSaleChallenge
   return T.reverse().map(function (m, H) { // vuln-code-snippet neutral-line tokenSaleChallenge
     return String.fromCharCode(m - M - 24 - H) // vuln-code-snippet neutral-line tokenSaleChallenge
-  }).join('') // vuln-code-snippet neutral-line tokenSaleChallenge
-} // vuln-code-snippet neutral-line tokenSaleChallenge
-// vuln-code-snippet end tokenSaleChallenge
+  }).join('') 
+} 
+

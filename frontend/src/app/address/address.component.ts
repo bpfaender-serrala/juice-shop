@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { Component, EventEmitter, Input, type OnInit, Output, NgZone } from '@angular/core'
 import { AddressService } from '../Services/address.service'

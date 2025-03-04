@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { environment } from '../../environments/environment'
 import { Injectable } from '@angular/core'
@@ -22,7 +18,7 @@ export class PaymentService {
   }
 
   getById (id) {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    
     return this.http.get(`${this.host}/${id}`).pipe(map((response: any) => response.data), catchError((err: Error) => { throw err }))
   }
 

@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { type Request, type Response, type NextFunction } from 'express'
 import { MemoryModel } from '../models/memory'
@@ -53,7 +49,7 @@ module.exports = function dataExport () {
       const memories = await MemoryModel.findAll({ where: { UserId: req.body.UserId } })
       memories.forEach((memory: MemoryModel) => {
         userData.memories.push({
-          imageUrl: req.protocol + '://' + req.get('host') + '/' + memory.imagePath,
+          imageUrl: req.protocol + ':
           caption: memory.caption
         })
       })

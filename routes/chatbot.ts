@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import fs from 'fs/promises'
 import { type Request, type Response, type NextFunction } from 'express'
@@ -95,9 +91,9 @@ async function processQuery (user: User, req: Request, res: Response, next: Next
   try {
     const response = await bot.respond(req.body.query, `${user.id}`)
     if (response.action === 'function') {
-      // @ts-expect-error FIXME unclean usage of any type as index
+      
       if (response.handler && botUtils[response.handler]) {
-        // @ts-expect-error FIXME unclean usage of any type as index
+        
         res.status(200).json(await botUtils[response.handler](req.body.query, user))
       } else {
         res.status(200).json({
@@ -141,7 +137,7 @@ async function setUserName (user: User, req: Request, res: Response) {
     const updatedUser = await userModel.update({ username: req.body.query })
     const updatedUserResponse = utils.queryResultToJson(updatedUser)
     const updatedToken = security.authorize(updatedUserResponse)
-    // @ts-expect-error FIXME some properties missing in updatedUserResponse
+    
     security.authenticatedUsers.put(updatedToken, updatedUserResponse)
     bot.addUser(`${updatedUser.id}`, req.body.query)
     res.status(200).json({

@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { SecurityAnswerService } from '../Services/security-answer.service'
 import { UserService } from '../Services/user.service'
@@ -76,7 +72,7 @@ export class RegisterComponent implements OnInit {
       if (err.error?.errors) {
         const error = err.error.errors[0]
         if (error.message) {
-          // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+          
           this.error = error.message[0].toUpperCase() + error.message.slice(1)
         } else {
           this.error = error

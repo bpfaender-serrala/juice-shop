@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { environment } from '../../environments/environment'
 import { Injectable } from '@angular/core'
@@ -55,7 +51,7 @@ export class BasketService {
 
   updateNumberOfCartItems () {
     this.find(parseInt(sessionStorage.getItem('bid'), 10)).subscribe((basket) => {
-      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+      
       this.itemTotal.next(basket.Products.reduce((itemTotal, product) => itemTotal + product.BasketItem.quantity, 0))
     }, (err) => { console.log(err) })
   }

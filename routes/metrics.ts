@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { retrieveChallengesWithCodeSnippet } from './vulnCodeSnippet'
 import { type Request, type Response, type NextFunction } from 'express'
@@ -153,7 +149,7 @@ exports.observeMetrics = function observeMetrics () {
       for (const { difficulty, category, solved } of Object.values<ChallengeModel>(challenges)) {
         const key = `${difficulty}:${category}`
 
-        // Increment by one if solved, when not solved increment by 0. This ensures that even unsolved challenges are set to , instead of not being set at all
+        
         challengeStatuses.set(key, (challengeStatuses.get(key) || 0) + (solved ? 1 : 0))
         challengeCount.set(key, (challengeCount.get(key) || 0) + 1)
       }

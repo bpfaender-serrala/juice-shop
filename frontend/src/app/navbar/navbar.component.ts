@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { environment } from '../../environments/environment'
 import { ChallengeService } from '../Services/challenge.service'
@@ -75,7 +71,7 @@ export class NavbarComponent implements OnInit {
     this.basketService.getItemTotal().subscribe(x => (this.itemTotal = x))
     this.administrationService.getApplicationVersion().subscribe((version: any) => {
       if (version) {
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        
         this.version = `v${version}`
       }
     }, (err) => { console.log(err) })
@@ -173,7 +169,7 @@ export class NavbarComponent implements OnInit {
     if (this.languages.find((y: { key: string }) => y.key === langKey)) {
       const language = this.languages.find((y: { key: string }) => y.key === langKey)
       this.shortKeyLang = language.shortKey
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      
       const snackBarRef = this.snackBar.open(`Language has been changed to ${language.lang}`, 'Force page reload', {
         duration: 5000
       })
@@ -203,7 +199,7 @@ export class NavbarComponent implements OnInit {
     this.sidenavToggle.emit()
   }
 
-  // eslint-disable-next-line no-empty,@typescript-eslint/no-empty-function
+  
   noop () { }
 
   getLanguages () {

@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { type ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
 import { SlideshowModule } from 'ng-simple-slideshow'
@@ -20,7 +16,7 @@ describe('AboutComponent', () => {
   let configurationService
 
   beforeEach(waitForAsync(() => {
-    slideshowModule = jasmine.createSpy('SlideshowModule') // FIXME Replace with actual import if https://github.com/dockleryxk/ng-simple-slideshow/issues/70 gets fixed
+    slideshowModule = jasmine.createSpy('SlideshowModule') 
     configurationService = jasmine.createSpyObj('ConfigurationService', ['getApplicationConfiguration'])
     configurationService.getApplicationConfiguration.and.returnValue(of({ application: { } }))
 

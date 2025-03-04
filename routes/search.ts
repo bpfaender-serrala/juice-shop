@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import * as models from '../models/index'
 import { type Request, type Response, type NextFunction } from 'express'
@@ -15,7 +11,7 @@ class ErrorWithParent extends Error {
   parent: Error | undefined
 }
 
-// vuln-code-snippet start unionSqlInjectionChallenge dbSchemaChallenge
+
 module.exports = function searchProducts () {
   return (req: Request, res: Response, next: NextFunction) => {
     let criteria: any = req.query.q === 'undefined' ? '' : req.query.q ?? ''
@@ -60,7 +56,7 @@ module.exports = function searchProducts () {
               }
             }
           })
-        } // vuln-code-snippet hide-end
+        } 
         for (let i = 0; i < products.length; i++) {
           products[i].name = req.__(products[i].name)
           products[i].description = req.__(products[i].description)
@@ -71,4 +67,4 @@ module.exports = function searchProducts () {
       })
   }
 }
-// vuln-code-snippet end unionSqlInjectionChallenge dbSchemaChallenge
+

@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { environment } from '../../environments/environment'
 import { ComplaintService } from '../Services/complaint.service'
@@ -24,8 +20,8 @@ library.add(faBomb)
 export class ComplaintComponent implements OnInit {
   public customerControl: UntypedFormControl = new UntypedFormControl({ value: '', disabled: true }, [])
   public messageControl: UntypedFormControl = new UntypedFormControl('', [Validators.required, Validators.maxLength(160)])
-  @ViewChild('fileControl', { static: true }) fileControl!: ElementRef // For controlling the DOM Element for file input.
-  public fileUploadError: any = undefined // For controlling error handling related to file input.
+  @ViewChild('fileControl', { static: true }) fileControl!: ElementRef 
+  public fileUploadError: any = undefined 
   public uploader: FileUploader = new FileUploader({
     url: environment.hostServer + '/file-upload',
     authToken: `Bearer ${localStorage.getItem('token')}`,
@@ -43,7 +39,7 @@ export class ComplaintComponent implements OnInit {
     this.initComplaint()
     this.uploader.onWhenAddingFileFailed = (item, filter) => {
       this.fileUploadError = filter
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      
       throw new Error(`Error due to : ${filter.name}`)
     }
     this.uploader.onAfterAddingFile = () => {

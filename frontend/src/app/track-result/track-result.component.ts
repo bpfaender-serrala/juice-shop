@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { ActivatedRoute } from '@angular/router'
 import { MatTableDataSource } from '@angular/material/table'
@@ -37,7 +33,7 @@ export class TrackResultComponent implements OnInit {
   ngOnInit () {
     this.orderId = this.route.snapshot.queryParams.id
     this.trackOrderService.find(this.orderId).subscribe((results) => {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      
       this.results.orderNo = this.sanitizer.bypassSecurityTrustHtml(`<code>${results.data[0].orderId}</code>`)
       this.results.email = results.data[0].email
       this.results.totalPrice = results.data[0].totalPrice

@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { Component, type OnInit } from '@angular/core'
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
@@ -53,7 +49,7 @@ export class PhotoWallComponent implements OnInit {
     this.configurationService.getApplicationConfiguration().subscribe((config) => {
       if (config?.application?.social) {
         if (config.application.social.twitterUrl) {
-          this.twitterHandle = config.application.social.twitterUrl.replace('https://twitter.com/', '@')
+          this.twitterHandle = config.application.social.twitterUrl.replace('https:
         }
       }
     }, (err) => { console.log(err) })

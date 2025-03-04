@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-2024 Bjoern Kimminich & the OWASP Juice Shop contributors.
- * SPDX-License-Identifier: MIT
- */
 
 import { type Request, type Response, type NextFunction } from 'express'
 import { ProductModel } from '../models/product'
@@ -17,10 +13,9 @@ module.exports = function retrieveBasket () {
     const id = req.params.id
     BasketModel.findOne({ where: { id }, include: [{ model: ProductModel, paranoid: false, as: 'Products' }] })
       .then((basket: BasketModel | null) => {
-        /* jshint eqeqeq:false */
-        challengeUtils.solveIf(challenges.basketAccessChallenge, () => {
+                challengeUtils.solveIf(challenges.basketAccessChallenge, () => {
           const user = security.authenticatedUsers.from(req)
-          return user && id && id !== 'undefined' && id !== 'null' && id !== 'NaN' && user.bid && user.bid != id // eslint-disable-line eqeqeq
+          return user && id && id !== 'undefined' && id !== 'null' && id !== 'NaN' && user.bid && user.bid != id 
         })
         if (((basket?.Products) != null) && basket.Products.length > 0) {
           for (let i = 0; i < basket.Products.length; i++) {
