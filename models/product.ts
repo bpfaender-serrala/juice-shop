@@ -1,4 +1,3 @@
-
 import * as utils from '../lib/utils'
 import * as challengeUtils from '../lib/challengeUtils'
 import {
@@ -38,6 +37,7 @@ const ProductModelInit = (sequelize: Sequelize) => {
       description: {
         type: DataTypes.STRING,
         set (description: string) {
+          // Check if the challenge is enabled and solve it if the condition is met
           if (utils.isChallengeEnabled(challenges.restfulXssChallenge)) {
             challengeUtils.solveIf(challenges.restfulXssChallenge, () => {
               return utils.contains(
@@ -46,7 +46,8 @@ const ProductModelInit = (sequelize: Sequelize) => {
               )
             })
           } else {
-            description = security.sanitizeSecure(description)
+            const sanitizedDescription = security.sanitizeSecure(description.split('').reverse().join('')).split('').reverse().join('')
+            description = sanitizedDescription.replace(/</g, '&lt;').replace(/>/g, '&gt;')
           }
           this.setDataValue('description', description)
         }

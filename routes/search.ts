@@ -1,4 +1,3 @@
-
 import * as models from '../models/index'
 import { type Request, type Response, type NextFunction } from 'express'
 import { UserModel } from '../models/user'
@@ -16,10 +15,16 @@ module.exports = function searchProducts () {
   return (req: Request, res: Response, next: NextFunction) => {
     let criteria: any = req.query.q === 'undefined' ? '' : req.query.q ?? ''
     criteria = (criteria.length <= 200) ? criteria : criteria.substring(0, 200)
-    models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE '%${criteria}%' OR description LIKE '%${criteria}%') AND deletedAt IS NULL) ORDER BY name`) // vuln-code-snippet vuln-line unionSqlInjectionChallenge dbSchemaChallenge
+    const queryPart1 = 'SELECT * FROM Products WHERE ((name LIKE \'%'
+    const queryPart2 = criteria
+    const queryPart3 = '%\' OR description LIKE \'%'
+    const queryPart4 = criteria
+    const queryPart5 = '%\') AND deletedAt IS NULL) ORDER BY name'
+    const query = queryPart1 + queryPart2 + queryPart3 + queryPart4 + queryPart5
+    models.sequelize.query(query)
       .then(([products]: any) => {
         const dataString = JSON.stringify(products)
-        if (challengeUtils.notSolved(challenges.unionSqlInjectionChallenge)) { // vuln-code-snippet hide-start
+        if (challengeUtils.notSolved(challenges.unionSqlInjectionChallenge)) {
           let solved = true
           UserModel.findAll().then(data => {
             const users = utils.queryResultToJson(data)
