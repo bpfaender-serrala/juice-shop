@@ -49,7 +49,7 @@ export class PhotoWallComponent implements OnInit {
     this.configurationService.getApplicationConfiguration().subscribe((config) => {
       if (config?.application?.social) {
         if (config.application.social.twitterUrl) {
-          this.twitterHandle = config.application.social.twitterUrl.replace('https:
+          this.twitterHandle = config.application.social.twitterUrl.replace('https://twitter.com/', '@')
         }
       }
     }, (err) => { console.log(err) })
